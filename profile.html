@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Profile</title>
+    <link rel="icon" type="image/x-icon" href="images/man-user.png">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body class="profile-page">
+    <div id='preloader'>
+        <span style='display: inline-block; height: 100%; vertical-align: middle;'></span>
+        <img src='images/preloader.gif' style='vertical-align: middle; max-height: 100%' />
+    </div>
+    <div class="profile-info" id="profile-info">
+        <nav class="row navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
+           
+            <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12">        
+            <a class="navbar-brand" href="https://github.com/">
+                <h4><b>GitHub Account</b></h4>
+            </a>
+            </div>               
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">                                    
+                <div class="input-group add-on">
+                  <input class="searchBox" placeholder="Search" name="srch-term" id="srch-term" type="text">
+                  <button class="searchBtn" id="searchBtn"><i class="material-icons">search</i></button>
+                </div>        
+            </div> 
+            <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12">    
+                <button type="button" class="signoutBtn btn btn-primary"><i class="fa fa-sign-out"></i>Sign out</button>
+            </div>                       
+        </nav>
+        <div class="page-header header-filter" id="bg-content" data-parallax="true" style="background-image:url('images/black-and-white-city-night.png');"></div>
+        <div class="main main-raised" id="profile-content">
+            <div class="profile-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <div class="profile">
+                                <div class="avatar" id="avatarImg">
+                                    <img class="img-raised rounded-circle img-fluid" id="adminImg" src="images/profileImg.png" alt="Circle Image">
+                                </div>
+                                <div class="name">
+                                    <h3 class="title" id="loginUserName"></h3>
+                                    <h5 id="userLocation"></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row overview" id="overview">
+                            <div class="col-md-4 col-sm-12 user-pad text-center">
+                                <h3><b>FOLLOWERS</b></h3>
+                                <h4 id="follwersData"></h4>
+                            </div>
+                            <div class="col-md-4 col-sm-12 user-pad text-center">
+                                <h3><b>FOLLOWING</b></h3>
+                                <h4 id="followingData"></h4>
+                            </div>
+                            <div class="col-md-4 col-sm-12 user-pad text-center">
+                                <h3><b>REPOSITORIES</b></h3>
+                                <h4 id='reposData'></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+        </div>
+        <section>
+            <div class="row" id="user_list">
+                <div class="col">
+                    <h1 id="title"><i>Github Users List</i></h1>
+                </div>
+            </div>
+            <br>            
+            <div class="row">                
+                <div id="view_cointainer">                             
+                    <div class="row list_view" id=list_cointainer></div>                  
+                    <div class="modal fade" id="profile-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="profile_view" id=profileContainer>
+                            <div class="span10 offset1">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">User information</h3>
+                                        <div class="panel-close"><span class="closeBtn"><b>X</b></span></div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row-fluid">
+                                            <div class="span3 panel-layer1">
+                                                <div class="panel-img">
+                                                    <img class="img-circle" id="panel-progileImg" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" alt="User Pic">
+                                                </div>
+                                                <div class="panel-btn">
+                                                    <strong id='singleUserName'></strong><br><br>
+                                                    <button class="btn btn-dark" id="gitHubBtn">Open in GitHub</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <table class="table table-hover table-dark">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Username:</td>
+                                                        <td id="panel-username"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email:</td>
+                                                        <td id="panel-email"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Location</td>
+                                                        <td id="panel-location"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Language</td>
+                                                        <td id="panel-language"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Repositories</td>
+                                                        <td id="panel-repos"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Followers</td>
+                                                        <td id="panel-follower"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Following</td>
+                                                        <td id="panel-following"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Account created at</td>
+                                                        <td id="panel-createTime"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Account updated at</td>
+                                                        <td id="panel-updateTime"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </section>
+    </div>    
+    <script type="text/javascript" src="js/profile.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/material.js"></script>
+
+</body>
+
+</html>
